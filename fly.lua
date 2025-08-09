@@ -1,4 +1,4 @@
---// Fly GUI von _nicklas187 (modernes UI Upgrade)
+--// Fly GUI von _nicklas187 (modernes UI Upgrade) V1
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -43,12 +43,12 @@ title.TextSize = 18
 title.Parent = mainFrame
 
 -- Button-Erstellungsfunktion mit Hover-Animation
-local function createButton(name, yPos, callback)
+local function createButton(text, yPos, callback)
     local btn = Instance.new("TextButton")
-    btn.Name = name
     btn.Size = UDim2.new(0.85, 0, 0, 30)
     btn.Position = UDim2.new(0.075, 0, 0, yPos)
     btn.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
+    btn.Text = text -- Richtiger Button-Text
     btn.TextColor3 = Color3.fromRGB(255, 255, 255)
     btn.Font = Enum.Font.GothamBold
     btn.TextSize = 14
@@ -66,17 +66,21 @@ local function createButton(name, yPos, callback)
     btn.MouseButton1Click:Connect(callback)
 end
 
--- Deine bisherigen Funktionen hier einfügen
+-- Deine Fly-Funktionen einfügen
 createButton("Fly Toggle", 50, function()
-    print("Fly ein/aus")
+    print("Fly ein/aus") -- Hier deinen Fly-Code einfügen
 end)
+
 createButton("Speed +", 90, function()
-    print("Speed erhöht")
+    print("Speed erhöht") -- Hier Speed-Erhöhungscode einfügen
 end)
+
 createButton("Speed -", 130, function()
-    print("Speed verringert")
+    print("Speed verringert") -- Hier Speed-Verringerungscode einfügen
 end)
 
 -- Smoothes Einblenden der GUI
 mainFrame.Position = UDim2.new(-0.3, 0, 0.4, 0)
-TweenService:Create(mainFrame, TweenInfo.new(0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = UDim2.new(0.05, 0, 0.4, 0)}):Play()
+TweenService:Create(mainFrame, TweenInfo.new(0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+    Position = UDim2.new(0.05, 0, 0.4, 0)
+}):Play()
