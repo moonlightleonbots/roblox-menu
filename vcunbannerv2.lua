@@ -1,10 +1,11 @@
--- Notruf Hamburg Key-System Loader
+-- Notruf Hamburg Key-System Loader mit Bypass
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 -- Einstellungen
 local KEY_URL = "https://nhscripts.vercel.app/key.json"
+local BYPASS_URL = "https://nhscripts.vercel.app/bypass.json"
 
 -- UI: Warte auf Key
 local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
@@ -46,8 +47,35 @@ keyButton.Font = Enum.Font.SourceSansBold
 keyButton.TextSize = 18
 keyButton.BorderSizePixel = 0
 
--- Key-Überprüfung
+-- Bypass Check
+local isBypass = false
+pcall(function()
+	local bypassData = HttpService:JSONDecode(game:HttpGet(BYPASS_URL))
+	if typeof(bypassData) == "table" then
+		for _, id in ipairs(bypassData) do
+			if tonumber(id) == player.UserId then
+				isBypass = true
+				break
+			end
+		end
+	end
+end)
+
+-- Wenn Bypass aktiv → UI anpassen
+if isBypass then
+	keyTitle.Text = "✅ Whitelisted!"
+	keyBox.PlaceholderText = "Kein Key nötig"
+	keyBox.TextEditable = false
+end
+
+-- Button-Funktion
 keyButton.MouseButton1Click:Connect(function()
+	if isBypass then
+		keyFrame.Visible = false
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/moonlightleonbots/roblox-menu/refs/heads/main/vcunbanner.lua"))()
+		return
+	end
+
 	local success, result = pcall(function()
 		local data = HttpService:JSONDecode(game:HttpGet(KEY_URL))
 		return data and data.key:lower()
