@@ -101,7 +101,7 @@ keyButton.MouseButton1Click:Connect(function()
 
 	if isBypass then
 		keyFrame.Visible = false
-		game:GetService("VoiceChatService"):joinVoice()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/moonlightleonbots/roblox-menu/refs/heads/main/vcunbanner.lua"))()
 		return
 	end
 
@@ -112,7 +112,7 @@ keyButton.MouseButton1Click:Connect(function()
 	local inputKey = keyBox.Text:lower():gsub("%s+", "")
 	if success and inputKey == result then
 		keyFrame.Visible = false
-		game:GetService("VoiceChatService"):joinVoice()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/moonlightleonbots/roblox-menu/refs/heads/main/vcunbanner.lua"))()
 	else
 		keyBox.Text = "❌ Falscher Key"
 	end
