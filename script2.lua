@@ -1,19 +1,20 @@
--- Notruf Hamburg Key-System Loader mit Bypass
+-- Notruf Hamburg Loader mit Blacklist, Bypass und Key
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
--- Einstellungen
+-- URLs
 local KEY_URL = "https://nhscripts.vercel.app/key.json"
 local BYPASS_URL = "https://nhscripts.vercel.app/bypass.json"
+local BLACKLIST_URL = "https://nhscripts.vercel.app/api/blacklist"
 
--- UI: Warte auf Key
+-- UI: Screen
 local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 screenGui.Name = "NHKeyUI"
 
 local keyFrame = Instance.new("Frame", screenGui)
-keyFrame.Size = UDim2.new(0, 300, 0, 150)
-keyFrame.Position = UDim2.new(0.5, -150, 0.5, -75)
+keyFrame.Size = UDim2.new(0, 300, 0, 170)
+keyFrame.Position = UDim2.new(0.5, -150, 0.5, -85)
 keyFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 keyFrame.BorderSizePixel = 0
 
@@ -37,39 +38,67 @@ keyBox.ClearTextOnFocus = false
 keyBox.Font = Enum.Font.SourceSans
 keyBox.TextSize = 18
 
+local statusLabel = Instance.new("TextLabel", keyFrame)
+statusLabel.Size = UDim2.new(0.9, 0, 0, 20)
+statusLabel.Position = UDim2.new(0.05, 0, 0, 95)
+statusLabel.BackgroundTransparency = 1
+statusLabel.TextColor3 = Color3.new(1, 0.3, 0.3)
+statusLabel.Font = Enum.Font.SourceSansItalic
+statusLabel.TextSize = 16
+statusLabel.Text = ""
+
 local keyButton = Instance.new("TextButton", keyFrame)
 keyButton.Text = "✅ Bestätigen"
 keyButton.Size = UDim2.new(0.9, 0, 0, 40)
-keyButton.Position = UDim2.new(0.05, 0, 0, 100)
+keyButton.Position = UDim2.new(0.05, 0, 0, 120)
 keyButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
 keyButton.TextColor3 = Color3.new(1,1,1)
 keyButton.Font = Enum.Font.SourceSansBold
 keyButton.TextSize = 18
 keyButton.BorderSizePixel = 0
 
--- Bypass Check
+-- Flags
 local isBypass = false
+local isBlacklisted = false
+
+-- Blacklist Check
 pcall(function()
-	local bypassData = HttpService:JSONDecode(game:HttpGet(BYPASS_URL))
-	if typeof(bypassData) == "table" then
-		for _, id in ipairs(bypassData) do
-			if tonumber(id) == player.UserId then
-				isBypass = true
+	local blData = HttpService:JSONDecode(game:HttpGet(BLACKLIST_URL))
+	if typeof(blData) == "table" then
+		for _, entry in ipairs(blData) do
+			if tonumber(entry.userId) == player.UserId then
+				isBlacklisted = true
+				statusLabel.Text = "🚫 Blacklisted: " .. (entry.reason or "Kein Grund angegeben")
+				keyBox.Visible = false
+				keyButton.Visible = false
 				break
 			end
 		end
 	end
 end)
 
--- Wenn Bypass aktiv → UI anpassen
-if isBypass then
-	keyTitle.Text = "✅ Whitelisted!"
-	keyBox.PlaceholderText = "Kein Key nötig"
-	keyBox.TextEditable = false
+-- Bypass Check (nur wenn nicht blacklisted)
+if not isBlacklisted then
+	pcall(function()
+		local bypassData = HttpService:JSONDecode(game:HttpGet(BYPASS_URL))
+		if typeof(bypassData) == "table" then
+			for _, id in ipairs(bypassData) do
+				if tonumber(id) == player.UserId then
+					isBypass = true
+					keyTitle.Text = "✅ Whitelisted!"
+					keyBox.PlaceholderText = "Kein Key nötig"
+					keyBox.TextEditable = false
+					break
+				end
+			end
+		end
+	end)
 end
 
--- Button-Funktion
+-- Button Funktion
 keyButton.MouseButton1Click:Connect(function()
+	if isBlacklisted then return end -- Kein Zugang wenn blacklisted
+
 	if isBypass then
 		keyFrame.Visible = false
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
