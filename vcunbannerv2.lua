@@ -1,1 +1,119 @@
-([[This file was protected with MoonSec V3]]):gsub('.+', (function(a) _hUybeEpDMXpf = a; end)); return(function(m,...)local r;local f;local a;local d;local l;local t;local e=24915;local n=0;local o={};while n<513 do n=n+1;while n<0x245 and e%0x2480<0x1240 do n=n+1 e=(e*593)%38212 local h=n+e if(e%0x9a8)>0x4d4 then e=(e-0x192)%0x8b87 while n<0x209 and e%0x3fd8<0x1fec do n=n+1 e=(e-638)%34890 local l=n+e if(e%0x43de)>0x21ef then e=(e*0x12)%0x3a97 local e=66105 if not o[e]then o[e]=0x1 end elseif e%2~=0 then e=(e-0x1b8)%0x6831 local e=4418 if not o[e]then o[e]=0x1 d=(not d)and _ENV or d;end else e=(e-0x2e1)%0x17c2 n=n+1 local e=75437 if not o[e]then o[e]=0x1 end end end elseif e%2~=0 then e=(e+0x33c)%0xf9d while n<0x27f and e%0x1ad2<0xd69 do n=n+1 e=(e-212)%12235 local f=n+e if(e%0xe9a)<=0x74d then e=(e+0x1f7)%0x3d5c local e=97240 if not o[e]then o[e]=0x1 a={};end elseif e%2~=0 then e=(e-0x367)%0x5c2b local e=78053 if not o[e]then o[e]=0x1 l=function(l)local e=0x01 local function o(n)e=e+n return l:sub(e-n,e-0x01)end while true do local n=o(0x01)if(n=="\5")then break end local e=t.byte(o(0x01))local e=o(e)if n=="\2"then e=a.eVMIMVOC(e)elseif n=="\3"then e=e~="\0"elseif n=="\6"then d[e]=function(e,n)return m(8,nil,m,n,e)end elseif n=="\4"then e=d[e]elseif n=="\0"then e=d[e][o(t.byte(o(0x01)))];end local n=o(0x08)a[n]=e end end end else e=(e*0x243)%0x2078 n=n+1 local e=28223 if not o[e]then o[e]=0x1 t=string;end end end else e=(e*0x3d5)%0x445d n=n+1 while n<0xf6 and e%0xb54<0x5aa do n=n+1 e=(e+257)%4397 local l=n+e if(e%0x1f58)<0xfac then e=(e*0x1fe)%0x309e local e=39670 if not o[e]then o[e]=0x1 d=getfenv and getfenv();end elseif e%2~=0 then e=(e-0x1d8)%0x2e6b local e=83064 if not o[e]then o[e]=0x1 r=tonumber;end else e=(e-0x3dc)%0x171b n=n+1 local e=71630 if not o[e]then o[e]=0x1 f="\4\8\116\111\110\117\109\98\101\114\101\86\77\73\77\86\79\67\0\6\115\116\114\105\110\103\4\99\104\97\114\117\102\102\90\120\106\109\82\0\6\115\116\114\105\110\103\3\115\117\98\111\115\121\79\117\115\108\84\0\6\115\116\114\105\110\103\4\98\121\116\101\121\74\110\95\68\69\117\83\0\5\116\97\98\108\101\6\99\111\110\99\97\116\66\74\119\82\100\66\80\115\0\5\116\97\98\108\101\6\105\110\115\101\114\116\65\112\70\83\81\88\113\122\5";end end end end end e=(e+210)%40716 end l(f);local e={};for n=0x0,0xff do local o=a.uffZxjmR(n);e[n]=o;e[o]=n;end local function h(n)return e[n];end local t=(function(m,l)local f,o=0x01,0x10 local n={{},{},{}}local d=-0x01 local e=0x01 local t=m while true do n[0x03][a.osyOuslT(l,e,(function()e=f+e return e-0x01 end)())]=(function()d=d+0x01 return d end)()if d==(0x0f)then d=""o=0x000 break end end local d=#l while e<d+0x01 do n[0x02][o]=a.osyOuslT(l,e,(function()e=f+e return e-0x01 end)())o=o+0x01 if o%0x02==0x00 then o=0x00 a.ApFSQXqz(n[0x01],(h((((n[0x03][n[0x02][0x00]]or 0x00)*0x10)+(n[0x03][n[0x02][0x01]]or 0x00)+t)%0x100)));t=m+t;end end return a.BJwRdBPs(n[0x01])end);l(t(41,"rDW1 -/Xt&OcBHRlHB"));l(t(134,"CoTfhM)nN}JW.g#QnJQJ#oM.ghhM.hfnh#TNWfTMJTQT}g#Mnh#N)Tg>niNPQW#%hg.MhJ.hTWJfTNNnffn._n}nJfToD)NTQfnTQTfg#n)Mg)TN}#f.Jo.NhNTQJJTT}foTNM}gnQ#gnJ#f)TW.ffWWff.shg.ofQhh.TJMofJlY#TMG)nNQfN>QTMW#oM.gfTg.fTo.JgEMTff}QTN}WRg})QgNJQo).Q=)f.}Mo.ThJJhffJJh)h..}}ToW}fo#}foPhW#J)h..hM#QhJW}fT))#6.gfoWffNJNoQ}JUMn.uo))Qgo6N}fW#J)oWnhoJ.T)JNfWMO.#WhT}JnTT}J9WNJQgnQQ#Mh#Q)hgWf}.}#RMQhNJQTJJ#Tof.TM}NohnQQWng#)Mo#TM*.)hQWWMM)ug..MfNWhoQ}WogNWognQ,NM)g#M.gT;7nW)rg.hg..h.}NhT}no}WfoJNVQnT)JTN}QMn)#})o#.)T.fMTJ}h)JfoQ}x.Th/Tf}oo#N.Jfn#Q#nWQMnTWgMg.of}W.fo}JT}hQ"));local e=(-3875+(function()local o,n=0,1;(function(n,e)n(e(n,e and e),e(e,n))end)(function(e,d)if o>337 then return e end o=o+1 n=(n+690)%23883 if(n%1258)>=629 then return d(e(d,e and e),e(e,e))else return e end return e end,function(d,e)if o>151 then return e end o=o+1 n=(n+964)%7979 if(n%1940)<=970 then n=(n+655)%32334 return e else return e(d(d,d),e(e,e))end return d(e(e,e),d(e,e and e))end)return n;end)())local k=a._w_nBPTP or a.ZKbVRaSs;local de=(getfenv)or(function()return _ENV end);local d=2;local y=1;local f=4;local l=3;local function oe(u,...)local s=t(e,"_kioC=T*U:(%mGDWLD:C=DiUWim(UT=ek(o*kGDG%CTWo%Wom%(i*kv(!kmUU(Wi%(UCCDkUDiDmm%A>1mGC:DTUoiWmmTmi:(iCW:%UUiCm=D=CkDDC:kTGCCkimW:o=WmT=%iCDD%UUiCmoT=oGD%s*iomBTiCWWGm(iC%i%,T%%igWT%C*DCUT:oGuWDCUf*oCzG%m(:=TiiCU(=DkDDU%imW%=U=CmF*GoU%Too(j:THiWWC%DUU(*TSCWkG(mCT!DGU(iTmoTVnm(:C=DokWi%mUT(C*W=miimC(oTDo%<mTmoCWDmU:i=mDT=i*(UC=UkUDi(mm((=UiCUDkG*:DT%oUmo=(i%DD%UUi%iUUCWk*mTU=C(Gi(%TToNW(kCW(%:U==kkDDW%T*UCok(mT(k*DCC:(T%iDWUmiGmmiUkTok:W#%%kiDm(T*Ho(=*oG GGCUW=%koD%mi:kokiTGG%i*:oG(TTDoUAimm:TT7.(oo%D:==ikmDTeWDi::U*o(v*%k(TCCk*DmmDUDWim%UT=yk(mTC(WGTiCDo%koGDW*(iomW%moU%=D%mUCCDkUDi(m*T*IC(GT:DTUoiWmmT:<UDTCW4%UUiCmkTD)T(m%*DrUW(:mTToJTioU,imU:=iTD=(W%U*m=k!%DC(=*TCC0G:i(C=GoCDW%%UmkUk=DD%UCkoDkWD2:%**CkmTmm:WT=iDU(=:kDDU%imi%U*kC*}:TD=W+imm:T%C:i=Gok(U%UU==ik=:(%%TWC%miGm(UTWoDW:mk:m=*iS(Tm*Uo=UkT:UUW*%C=;D%G::TkDUDUUWiT/:%(UCCDT==kk%DC:oTWo*WG%%(TTDiWWDmk:*oTikDT%^*%CDD%DU%i*(GC:mTTosW(mCUD:TTiDm%(UJC(kCokkkDm(k&TDa:(TCiDo(ioDWmkU*=mioWo%T*TkWk=Gm(:*T{k:UTmimWTmIGk%::io%k*DD%m*:oG?:TDomFimm:T(T::TioiUUTkkmDT%b%m%oUYomw*GDU:T:CCW:(D:kT(ikWi=ik(DC(D*UCiCmo%DATmoCWDmU:i=miTDpW:U=CDk(Di(m*TC>x(GCI*(UoiO5mT:V=(*iCWi=D*Cmk%Dz((*C(DT%oofUGioiW(mCUD=UiiDmW(m^CmkCGD(U*iom6TiDG(TCC*WUmiUmCom0(*(koiG:oikDZWDC(DT:DDDom*(=kTi=WomiU=CGkCDk%Ck Dk(CTDoU=TokXDGCTmTooTUU=UkmDT%c%G%o*(C*kC:WoU4<m(:C=DiU*ilimT=SioDC(D*U:i*Uo*k:mW(TC=oGW%=miTWw%(UCCDkWDi(m*TUD=ikW}oDkU*C=mT:U=(iCDDMkWs%WU(CkkUG*(oaUDU:mTTo3omi=WkmoU:=Di=W=%U*Uoik(Go((*:CfW%GT:oTTi=0==UieD(%C*DCUkii=DT*vC(xCmD:U(=:U=%ikWm(UUoTZiTm%%C=TC:b*Do(%giGT:TTIi(CUio6SmT=D=%iCDD%o*mGUm*TmoTdloiPUGi:UT=WT%=*WUUCmikG%%C*=CTkCGGTi*CiGlC%WU%=mDUD=%DUUkkk*G%%:oUoDkkG*(bWmmW:Q=(iCCkk%WC%k*%CDWkD:(*PUGG:mTToYCTooWk%:UDomiiDkmo*:=+(U*:omXTG#GGGo:mTTi*DWm(i/DG%C*DCUUdCkkG*iGC:GT*okW%m=:WWWUm=CkDDU%i*mPTUik((C*ioUYimmWGmk:*=:mp%%U=CWk:Do(Gk*CGGU%oTmoTIEk*zoGo:%=*WDW%mCUD=okm(:U=*UoWwoG=oC3WmU:i=m*k==oo(C%TUkC*kD:T(=*oCiw=mG:CTkoC:E=DiCDD%UGT%kUD=C((:DoD?UGiXCG((CT(o*mUU*=k=(kDWo(GUTC*kUDT(WoCCTWWGT:k=GiD%(%*:t=(DoGW%U*%{%xUGm:%T*o:cCm%:WT(mL:i=CkDDUaiD%%:*:CDQGGG(TJiG!:TTBi(o:imWG%WkWDT%Z*(=kVDGU(iTGoTaBiU:C=DiU=(ocW(mrUGkDGG(*%CTGCGmDGk:G*io/L*%D:%TokWWT%kU*=aivG%(D*Dei/kG*:Wi%ooWWm::i=(ikD:%CU(Cm}WDo(mT(Ckk}G:=WTmooWvmC:kTCDoDG(WUi=oG*DC(kTmCom:mm:o=:iTWWU=UGC%kGDm**UUoWk%GD:mT=om>Tm*:DiCimWW%=kDD%%i*mCTo=CGmWTDom&imm:T%CUWTmoiUU=mkmDT%9DT%oTWomk=D<(UT:oUW%=DiWWi%mUT(TUo=*k*G((D*kGT(=T(oCWDoCKkGoU%Ti%(UUCDkUDikoG*(GTWGC(iTUoiWmiGeomWUTDD%UUiCmkTD^%k*CoD+Uk(kLG((uCki:Ki=Ui*Dm%TUq%(**oWkCGDomkTG7:(TCky:=CD(m:mUk=Ti*Dk%g**CDmT%%:W*GmW:UTiimW%mbU(=CkDDW%i*mCT=UCDkUGD*WT*Cu:TTCi(WC%DDW%oU:C%%PUCCC)DGUDm%WU=CD)DW:mk:*=TikUT=ok(DC(DDo(*U=GT(=T(oCWDoCOkGoU%Ti%(UCCDkUWq(m*TC?;(o=:DTUoiWmmT:,=(CCt=%UUiCmkTDJ(G*C=8fWGi:DTToiW(mCUD*UiCDm%UUYCmkCGW(U*iC*aTGC:(T=iDWUmiUmTGi1Dm%CUiCUkiGm(TU=o(ICmD:UTiiDWTmTDT=CkWDU%D*mC*k;G((C*i=(Simm:TTmi(W=%D(UTDkmD*%P*(CCkiGUmi:ooTfkm(:==DiGWi%m%i=Zk%DC%e*UCCOmGTDGT(o=WDm(:i=miTW{DWUCCDkUDo(m*TC#^(Eo:DTUoiWm&m:3=(iCDD%UUiCmkmW*((*CoDNmGi:GTTodW(mU%3=UiiDm%(U;C%kCGDGG*iom<TGk:(TCiDWUlUUm=Ti1D%%C*DCUkUWo(T*2o(k=mD::TiimWTmC(m=CkDDUmo*mC*k}G(D(TDoU?imD:TT3i(iCwTUU=ikmDm%,*%CCizDi(iTmoTL=m(:C=Do(Z(%mU*=QiiDC(D*UTikUGT(kT(o=WDGo:iTDimW3%GUC=}kUDi(m*TC:L(G=:DT%oiWmmT:FT=iCDD%UUiCmkUD8((m%oDLUGi:GTTokW(mCmo=UiiDm%*U?C(kCW7G%*iomPTGm:(TCiDWDDUUm=*izD(%C*WCUkCGm(T%ho(,CmD:%TiimWTmFm(=CkDDU%T*mCTksG(GUTDoUjimD:TTki(WCGiUU=CkmD%%q*(CCiDDW(iTDoT>im(:U=DCUWm%mUU=QkmDC%=*UCik(GT(iT(oTWDm(:i*miGWp%mUC=4kUD%(mUUCUd(GU:DT%oiWmmT(iTiiCWo%UUmCmkTDL((UGoD6(Gi(kTToiW(m((==UiiDmDiU C%kCGD(U*T=DETG7:(:{iDW:mi:i%:iRDm%C((CUkoGm(**woDiTmD:UTi=UWTmkU(=CTCDU%=*mCUkBG((C:DU+;imW:TTTi(W=%D:(TWkmD:%t*WCCbDGU%CUUoTMCm(:m=DiUWiGmU*=HkDDC%i*UCGpmDU%(T(o(WDm(:i=miTWcGTUC=ikUDU(m*TCH?(DT:DT%oiWmmT:i=(iCC=%UU=Cmk*Dj(%*CCii(Gi:mTT=DW(m=UD=UTUDm%:U}CWkCGD(U(i:%zTGo:(TUiD{=miUmU%iBD(%C*WCUkiGm(T*Do(5CmD:UTUimWTmpWomC*W=kiCDWCTkTG((CTDUG*=okcU(:UDWCmiUU=ikmCGkkD*(:!DGm(iTmoT=CiW0mGiiUWU%mUT=2UD=GkDGG%k*iGT(WT(oCWDkUWD%GU:==iiWo%(*mC*kDm((=UiCU:D*ioiWmmTG((G*oomWmD*(WU=CC#W*CCogUGi:mG(:k=moJWo=:iiDmmTU8C(kCmQCCW*=m=GoU!oGU:oTCi%WWm(U=CDG=*D=*kiGm(T%%:WTGom%U(G:kTWDLWUk*GC=mk%DoCTkmG((CTDUmT*CC9((=UD=GoiD:%CUUC%%1UiCCXDGUkTG%(C*=o*WTmo:(WimoUT=pk(imiiDm%i=oo%kCT(oCWDmU%T=miTW.%(D=CDkUDi(m*TC)L(WC(DTUoiWmmT:fTkiCMrmkUiCDkTDo((*CoDiUG::mTUoHWmmC:m=UiiZT%TUCC(k=GD(U*iomkmG{:mTCoiWUmiUm=To%D(%C*DCUkiGD(TUiTGRCmW:UT*imWTm-U(==kDD(%i*mCTkRG((C:(oU!omm:UTQimWCDCDT=ikGDTGo*(C=rDDr(i*l=Uc)m(:CUkiUWo%m:UUok(D=(D*:CiQmGT(NT%oCqZmU:i=miTW{%(GmCDk:Di(D*TCoA(GUmHTUoiWmD*:f=%iCl/D%Ui=ikTDG((*CoDXUk*:mTGojWWmCUD=UiiWD%TUTC(kTGD((*iomkDGJ(kTCo5WUmiUm*ToiD(%%*DCWkiGD(T*T=*2CGC:U*(imW*m<:k=CiiI(%i*mCTiUG((=TDomiCmm:TTgC%WC%WUU=i=oDT%T*(C=xDGU(iTm:(d4G^:CTkiUWi%mUT=(k(D((D*mCi7mGTG8*IoC3CmU:T=mo&W&%(:GCDkDDi%k*TCSj(KC(*TUoUWmmm:gT=iCDDm(Ui=ikTD=((*CoDoUDm:mTmoNwTmC:*=UiTyD%TUIC(o*GD(:*iCi^:Ge:%TCoDWUmoUm=UiXDDGT*DCUkiDm(T*ko(ZC8o:UTiimW*m}U(=CkDW*%i*mCTksD/(CTDoU*TC=tTm=::=(%D:i=ikmDTW(mG:o=mkmy*mW(=TCiW:CTCiUWi%mDWml*%CGivD%CikiGT(MT((TToi:O=m%:CWZ%DUCCDkUC:}GDo(=}(DU:DTUoiC*i%W:mUCCo=i(W*%(*(5^Z%Di(=TGo:FkmU:=TUmC:o=UiiDmi(Dk(mU2Co(U*:omqTG)DiGU(iTU/:Wkm(i+DD%C*DCUTTCkkDDCo(Z%mD:UTiUi=WooWo%TU(CG%iUCCTk G(kUGG(T**o:WUm=:mWCGiUU=ikmGo=uo*okmUUomi(D(iTkiGWWm(:kT=ozD%%C=CPC(W*UCikiGT(vT(U:*kiG-C(=U(WRm9UCCDkU=*kWG%%i=ooU:DTUoiWmWs:F=(iCDDk:UiCmkTDB((*CoDiUD*:mTTotW(mC:r=UoCWk%TUiC(k:GD(U*i=mkCGb:mTColWUm(Um=Ti(D(%U*DC:kiGm(T*>oGhCG!:UTTimWTmxU(TmkDDU%i*mCTkiG(%T(koU4omm:*T7i(WC%DU:=ikDDT%J*(CCVDGUmDTmo*vSmm:CTaiUkUD%UT=kk(Wk(D*:CikoGT(CUmoCWDmU:W=mi*WO%D(TCDkUDiG=*TCk{(DTGkTUooWmm::?=(iCDD%:UiCDkTD1((*CoD/Ui(:mT*o/WmmC:k=UiTfD%TUrC(o%GD(:*iCDo:Ga(KTCo:WUmiUm*T=WD(%%*DCGkiD%(T*&o%ZCGC:UTCimWUm/U(=DkDDW%i*DCTkLG(mCUToUu:mm:GTxoUWCmC(k=iiiDTG**(C=gDGW(i*p=Uq-m(:CU=iUWo%mUTU*k(D((D*:CiJmGT(uUUoCaCmU:==miTW7%(:%CDkDDi%)*TC5b(DT%:TUo:WmGi:N=(iCPDm=Ui=CkTD=((*UoDzDGC:mTDoOk(mCUW=UioDm%((iC(kCGDmU*ioG.TDi(iTCoTWUmUUm=Ti#D(%D*DCWkiDo(T*Uo(kC3g:UTUimWWmH:k=CkDD%%iUiCTk=G((CTDTUzmmm:mTfoCWCm%UU=ioiDT%T*(C(+DGU(i:mCW{{G :CTUiUWW%mU(T(k(DC(D(kCi5GGT(TTGoCWWmU(o=mi*WZ%mUC=io(Di(m*T=k6(G=:DTUT*WmmT:F=%iCDD%UUiC.kTD/((*CUW&UGi:mT*oVW(mC(h*oiiDm%T:%C(kCGD%(*=omnTGj(GTCiDWUDU:W=Ti!D(%(*DC:kiWT(T*C=m!CmD:UTUimW*mhU(U:kDDU%i*GCTkIG(%T(koUSimmGoTei(WCGDGG=ikmDT%?*(TozDD((DTmoUKFmD:C=DiUWim%UT=;k(DT(D*(CikDDU(3T%oCo%mU:i=mCTW:%(U=CDk:Dim%*T=ikiGC(kTUCiWmmT:}=(iWDD%:UiCWkTDi((:C=(?UGC:mT*o!oimC(pToiiDW%T%TC(kCGD%(UkomF(G1%iTCiDWUGC(U=Ti=D(WT*DCUkiDD%T* CblCWW:UTiimkTm=U(=(kDDD%i%TCTiiDk(C*=oUo:mm:TT;C(Hk%D:q=ikDDT%**(=TkTGU(mTmTCV1m(:C=DCiWimCUT=(k(DC(D*UC%tmGm(8T(oCH#mUmiT)iTWT%(((CDCUDi%DUCC6kkGCmWTUoiWmDT:*=(i%DD%WUiUTkTWi(m*CCT6UD%:mTToZW(G*UDTkiiWi%TU8C(kCW*(U*:omjWG1:mTCC5Wmmi:C=Ti:D(%C*DTUiTGm(D*NCi9C2U:U*CCkWTm:U(=DkDDU%iUDC:kRDC(C((oUhimm(U*Ci(WW%D:i=ikmDTmiU*CCk(GUmCTmoTs6m((D=DoHWimUUT=ik(WCmG*UC:ymWo(-*ioCkwmm:iTCiTW:%(UCCDoUDT(m*DCKkiGCGUTUCCrGmT::=(oTDD%UUi=DiGDX%C*CC(hUGi:m*UooW(mWUDT(iiDm%T:iCmkCD((U*Com0TG0:(T:iD+wmi:U=TiiD(mC:GCUk:GmD:*9Ci&CDFDDTioCWTDmU(=CkD,UmF*mCDk!Di(C*moUkCD=:TT:i(kZ%DUU=iiDWm%^UCCCi(GU(iTmCU{im(:W=DCCWi%mUT=,iiDC%T*UCGrmGU(S*(CGWDmW:i*(iTWU%(%C(GkUD:(m:*CRkCGC%u:ioiOCmTmk=(iCDDGU:GCmkDDj%i*C*U)UDC%TTTo:W(mWUD=UiiDmmkUc=CkCD=(U*iom?TGG:(TmiDXimiUD=Toipo%CU*CUk%Gm(T*4=(5:mD(kTio=WTW(U(TTiTDU%m*mT:k^G((CUs=:,iG*:TT(i(WC%D:(=(kmWi%2UCCCBDGU%CUToTwGm(%m=DiUWi%m:(=^ioDC%%*UCC5mDT(kT(omWDD=:iT=iTiA%%UC=TkUio(m(fC8kmD%:D*koiiUmT:}=(CCl(%UU%CmkWD6DC*C=wocGi(TTT=oW(mCUDT(o:DmmkUBTGkCGD(UUCCmHTGm:(U*iDWUmiUmTUiLWo%CU(CUkCGm%TU:o(tmmD(=Tio=WTGi::=Ci*DUGD*mCTkAW((GTDCk1iG=:TTDi(yTGWUU=mkmk:%Z*(CCisDC(i**oToom(:C=Do(S:%m:i=xCGDC(D*UCinDGT(:T(CJWDm(:iTmi%WumiUCTmkUD%(m(TCU7(Gm:DU:oi#TmT(i=GiCW*%UmTCmkTD5m(:MoDkkGi(=TT=)W(DC((=Ui%Dm%WUHC%kCDDDT*iCCZTWM:(TGiDiUm(Um=Di,WH%C:CCUiCWk(T*:o(o=mD:UTiCmW%m7:o=Ci*DUDm*m=UiUG((DTDTo}imm:TTOCiWCm:UU=:kmDT%g*(CGzDDk(i**oTsim(mC%GiUW%%m:==j=(DCme*mCikTGT(:T(oCWDDU(%=moXW0mCUCUUkUWCmk*TC%3(G::DTUoi4DmG:XTTiCWU%UUiCmiUWi((UkoDkiGi:mTTCik-mC:m=UC(Dm%TUvC(kWGD%i*iC(!TGi:(*CCGWUm%Um*oi9WC%C:jCmkiDT(T*:o(XCmD%U*Tim5?md:C=C=UDUmC*WCTk%G(GWTDoUEiGD::TcoTWCmUUU=ikmWU%i*(=ktDDi(iTmoTkiGT:CTmiUi=%mUT=tk(W*(DUiCik(GT(iT(CCkGmU:%=mT:W^mCUC*DimDi%=*TUkY(po:D*(omWmGP:NUTiCDD%U(i=kkTD(((*DoDkTGi(DTGo;A=mC%%=UiiDmmU:TC(i.GDG=*iom6TDi((TCo%WUDWUm=Ti!D(%D*D=ikiD:(T*io(kCDG:UT%imkCmE:C=Co#oD%iUTCTomG((CTD=UhTmm( TsoCWCWUUUTCi=DT%%*(T*yDGU(i*DoD!JGT:CUkiUWi%m:UTkk(Wk(D:%CirmGT(3TGoCtUmU:W=miUWym(U*CDikDi%:*TC(g(5CWGTUo%WmW(:E*DiCz4WoUi=TkTiC((*CoDiUGU:m*}o-?CmC(D=UCiWm%TU(C(kDGD%x*iCm8mG6(oTCCDWUmmUmUTiTD(%G*DCDkiGW(TUiCUwCGU:U:oimWTmL((TWkDWi%iUTCTC(G(%T*ToU?Gmm(kT<i(WC%DDk=iiUDT%**(CC8DGU%(TmCl4cGT:CTMiU?CmUUT=%k(DG(D*UCiimGD(A*=oCj:mUmm=moUy*%(: CDkGDi(m*T=iiTGC(%TUomWmmT:XTmooDDmTUi=TkTDN((UTCTOUDk:m*moLW(mCUD%DiiW*%TUWC(kTGD%UUTomk{Gt%*TCo:WUGC(:=Ti%D(%G*DCUkiWm((*wC=0CG::U:mimLUG(U(TtkDio%i*mCTiiD*(C*%oUemmm:TT4omW:%D:T=iiTDT%d*(=TkTGU%kTmCG>!m(:C=DCUWim*UT=Wk(DT(DUU=o6mDf(z(GoCs:mUmi*UiTW(%(%TCDo%Di%D*:C+k=GCm(TUoiWmDT::=(iWDDmoUiUTkTWim**CC(9UW=:mTTovKmmmUDT=iii(%TUjC(iTDT(UUSomCCGf:(TCiDkmmi:*=TiDD(%T*D=UkWGm%8*FC*QCG::U*CCUWTm%U(:UkDDU%i:mC*kQD=(C*:oUiimm%T*oi(WW%D:o=iiGDTmAUoCCkUGUmiTmCk^lW((D=DoiWimiUTT=k(kCxG*UCmamk*(q::oCkfk%:iT*iTik%(UCCDoUWi(mUkCrk=GCGUTUCCkTmT:m=(=:DD%UUiCmiWDR%**CC=>UGi:mTTC%W(mWUDT=iiDD%T%<=WkCD:(U%oomk(Gq(m*%iD0Cmi:==TiPD(GC:(CUkDGm%i*M*C4CD>:(Tio:WTm=U(=CkDW(mU*m=CkqDC(CTDoUkCD::TTWi(WD%DUU=iiDFo%AU(CCoTGU(iTmoTkkm((v=DoUWi%DUTTloiDC%:*U=W<mDi(c*mC%WDGC:iT=iTW-%((CT(kUDD(mUiClCCGC%9T(oip:mTm%=(iCDDm(UmCmiCD<%C*CoDPUDC(kTToWW(mDUD=UiiWDm%U5=(kCO*(U*iomOTDo:(*6iDOUmiUD=Tox+T%CU:CU==Gm%i*.CmPTmD(CTi=UWTmFU(*Co(DU%D*m=ik?DU(CU9T}biG::TT(i(WC%D:(TokmWC%}:WCC;DGU%C*voT1Wm(:D=DiUWi%m(k=OiTDC%G*UCCLmDT(WT(oWWDDT:iTUiTcimGUC=(kU;D(m*TC i(G(:D*Coi&UmTm(=(oTkT%UUWCmo:D2((*C=zk=Gi((TT=oW(mCUDT(i:Dmm=U)TGkCGD(U*iC)ITGm:(*oiDW(mi:mT(i6W=%CU%CUkDGm%UUoo(k0mDGmTiimWTD4:i=Ci(DU%D*mTTklW(m.TDCC/iGU:TTki(xCGGUU=GkmHT%#UTCCoDim(i**oT0Tm(:*=D=UW=%m:k=so%DC%U*UCik=GT(mT(oCWDmU:i=mCiWlm*UCCDkUDi(mUU=T,(Di:DUWoiWmmT:TUJiCWG%UUCCmk*D0%k*CoDT=Gi:mTTo{W(mCUD=U*WDm%TUhCWkCGD(U*i::zTGR:(TTiDWUmiUm%oiOD(%CU%CUkiGm(TmGo({CmD(iTiimWTm)D*=CkDDU%%*mCTk7G(BkTDoUsiG*:TTqi(WC7DUUTOkmDU%N*%CCkCD=(i*:oTD4m(:==DiUWimq(U=Ok(DCUD*UCo.mG(miT(oCWD%k:i=GiTciDGUC=mkUn:(m*TCHkVW(:D**oiWGmT:k=(i(DD%UGWCmkTD-((*CoD<UGiW:TToJW(mUUD=UiiDmkoUEC(kCDs(U*iomITiG:(TCiD0CmiUm=TieC*%C*DCUk(Gm(T*go(TkmD:UTio=WTmbU(=CiWDUmz*mCUk G%(CUD=C>iG(:TT%i(oo%D(U*:kmWC%MUUCCC*GU(U:ioTk0m(:C=Di:WimiUT=s**DC(D*UCWgmGT(ST(:kWDmU:iTUiTWu%(UC(%kUDi(m*GC#s(GC:Dm=oiWmmT:#=(iCDD%UGWCmkTD^(G*CoDNUGiW:TTo-W(mGUD=UiiDm%WU{=UkCDD(U*oom)TDG:(TCiDW:miUm=Ti-");local n=0;a.YWbGyHYo(function()a.jghYVaLi()n=n+1 end)local function e(o,e)if e then return n end;n=o+n;end local o,n,h=m(0,m,e,s,a.yJn_DEuS);local function t()local n,o=a.yJn_DEuS(s,e(1,3),e(5,6)+2);e(2);return(o*256)+n;end;local c=true;local c=0 local function g()local d=n();local e=n();local l=1;local d=(o(e,1,20)*(2^32))+d;local n=o(e,21,31);local e=((-1)^o(e,32));if(n==0)then if(d==c)then return e*0;else n=1;l=0;end;elseif(n==2047)then return(d==0)and(e*(1/0))or(e*(0/0));end;return a._kliIeIx(e,n-1023)*(l+(d/(2^52)));end;local p=n;local function b(n)local o;if(not n)then n=p();if(n==0)then return'';end;end;o=a.osyOuslT(s,e(1,3),e(5,6)+n-1);e(n)local e=""for n=(1+c),#o do e=e..a.osyOuslT(o,n,n)end return e;end;local c=#a.otPqliMc(r('\49.\48'))~=1 local e=n;local function oe(...)return{...},a.pWlIlOQH('#',...)end local function ee()local m={};local r={};local e={};local s={r,m,nil,e};local e=n()local k={}for d=1,e do local o=h();local e;if(o==1)then e=(h()~=#{});elseif(o==2)then local n=g();if c and a.HESQdwqu(a.otPqliMc(n),'.(\48+)$')then n=a.CiSQZUDY(n);end e=n;elseif(o==0)then e=b();end;k[d]=e;end;for e=1,n()do m[e-(#{1})]=ee();end;for a=1,n()do local e=h();if(o(e,1,1)==0)then local m=o(e,2,3);local h=o(e,4,6);local e={t(),t(),nil,nil};if(m==0)then e[l]=t();e[f]=t();elseif(m==#{1})then e[l]=n();elseif(m==u[2])then e[l]=n()-(2^16)elseif(m==u[3])then e[l]=n()-(2^16)e[f]=t();end;if(o(h,1,1)==1)then e[d]=k[e[d]]end if(o(h,2,2)==1)then e[l]=k[e[l]]end if(o(h,3,3)==1)then e[f]=k[e[f]]end r[a]=e;end end;s[3]=h();return s;end;local function ne(o,n,e)local d=n;local d=e;return r(a.HESQdwqu(a.HESQdwqu(({a.YWbGyHYo(o)})[2],n),e))end local function j(z,s,h)local function ne(...)local t,_,u,ne,c,n,r,ee,p,b,g,o;local e=0;while-1<e do if 2>=e then if e>=1 then if 2==e then n=-41;r=-1;else u=m(6,16,3,16,z);c=oe ne=0;end else t=m(6,47,1,33,z);_=m(6,72,2,13,z);end else if 5>e then if 3~=e then b=a.pWlIlOQH('#',...)-1;g={};else ee={};p={...};end else if e>1 then repeat if 5<e then e=-2;break;end;o=m(7);until true;else e=-2;end end end e=e+1;end;for e=0,b do if(e>=u)then ee[e-u]=p[e+1];else o[e]=p[e+1];end;end;local e=b-u+1 local e;local m;local function u(...)while true do end end while true do if n<-40 then n=n+42 end e=t[n];m=e[y];if m>=52 then if 78<=m then if m<=90 then if m<84 then if 80<m then if m<82 then for m=0,3 do if 2>m then if m~=0 then h[e[l]]=o[e[d]];n=n+1;e=t[n];else o[e[d]]=(e[l]~=0);n=n+1;e=t[n];end else if m>=1 then repeat if m<3 then o[e[d]]=h[e[l]];n=n+1;e=t[n];break;end;if(o[e[d]]~=e[f])then n=n+1;else n=e[l];end;until true;else o[e[d]]=h[e[l]];n=n+1;e=t[n];end end end else if m==82 then do return o[e[d]]end else local r;for m=0,6 do if m>2 then if 4<m then if m>=1 then for k=20,67 do if 5<m then o[e[d]]=h[e[l]];break;end;o[e[d]][e[l]]=e[f];n=n+1;e=t[n];break;end;else o[e[d]][e[l]]=e[f];n=n+1;e=t[n];end else if m>-1 then for f=20,76 do if m~=4 then o[e[d]]=o[e[l]];n=n+1;e=t[n];break;end;r=e[d]o[r]=o[r](k(o,r+1,e[l]))n=n+1;e=t[n];break;end;else o[e[d]]=o[e[l]];n=n+1;e=t[n];end end else if 0<m then if m<2 then o[e[d]]=o[e[l]][e[f]];n=n+1;e=t[n];else o(e[d],e[l]);n=n+1;e=t[n];end else o[e[d]]=h[e[l]];n=n+1;e=t[n];end end end end end else if m>=79 then if m>=75 then for r=24,61 do if m<80 then local r;for m=0,6 do if m<3 then if m>=1 then if m==1 then o[e[d]]=o[e[l]][e[f]];n=n+1;e=t[n];else o(e[d],e[l]);n=n+1;e=t[n];end else o[e[d]]=h[e[l]];n=n+1;e=t[n];end else if m>4 then if m~=4 then repeat if 5~=m then o[e[d]][e[l]]=o[e[f]];break;end;r=e[d]o[r]=o[r](k(o,r+1,e[l]))n=n+1;e=t[n];until true;else o[e[d]][e[l]]=o[e[f]];end else if m>=-1 then repeat if m~=4 then o(e[d],e[l]);n=n+1;e=t[n];break;end;o(e[d],e[l]);n=n+1;e=t[n];until true;else o(e[d],e[l]);n=n+1;e=t[n];end end end end break;end;local f;for m=0,1 do if m>-2 then for h=15,83 do if m~=1 then f=e[d]o[f](o[f+1])n=n+1;e=t[n];break;end;if o[e[d]]then n=n+1;else n=e[l];end;break;end;else if o[e[d]]then n=n+1;else n=e[l];end;end end break;end;else local f;for m=0,1 do if m>-2 then for h=15,83 do if m~=1 then f=e[d]o[f](o[f+1])n=n+1;e=t[n];break;end;if o[e[d]]then n=n+1;else n=e[l];end;break;end;else if o[e[d]]then n=n+1;else n=e[l];end;end end end else o(e[d],e[l]);end end else if 87>m then if 85>m then for m=0,4 do if m<2 then if m==1 then o[e[d]][e[l]]=e[f];n=n+1;e=t[n];else o[e[d]][e[l]]=e[f];n=n+1;e=t[n];end else if 2>=m then o[e[d]]=(e[l]~=0);n=n+1;e=t[n];else if m>2 then for f=38,86 do if m<4 then o[e[d]]=(e[l]~=0);n=n+1;e=t[n];break;end;o[e[d]]=h[e[l]];break;end;else o[e[d]]=h[e[l]];end end end end else if 82<m then repeat if 86~=m then local r,c,a,p,u,s,b,m;for m=0,6 do if 3<=m then if m<5 then if m>2 then for k=20,91 do if 3<m then r=e[d];c=o[e[l]];o[r+1]=c;o[r]=c[e[f]];n=n+1;e=t[n];break;end;o[e[d]]=h[e[l]];n=n+1;e=t[n];break;end;else r=e[d];c=o[e[l]];o[r+1]=c;o[r]=c[e[f]];n=n+1;e=t[n];end else if 1~=m then repeat if m<6 then m=0;while m>-1 do if m>2 then if 4>=m then if m==4 then b=a[p];else s=a[u];end else if m>2 then repeat if m<6 then o(b,s);break;end;m=-2;until true;else m=-2;end end else if 1<=m then if m>=0 then for e=42,70 do if m~=2 then p=d;break;end;u=l;break;end;else u=l;end else a=e;end end m=m+1 end n=n+1;e=t[n];break;end;r=e[d]o[r]=o[r](k(o,r+1,e[l]))until true;else r=e[d]o[r]=o[r](k(o,r+1,e[l]))end end else if 1>m then r=e[d];c=o[e[l]];o[r+1]=c;o[r]=c[e[f]];n=n+1;e=t[n];else if m>0 then for f=30,64 do if m~=1 then r=e[d]o[r]=o[r](k(o,r+1,e[l]))n=n+1;e=t[n];break;end;m=0;while m>-1 do if m<3 then if m<=0 then a=e;else if
+-- Notruf Hamburg Loader mit Blacklist, Bypass und Key
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- URLs
+local KEY_URL = "https://nhscripts.vercel.app/key.json"
+local BYPASS_URL = "https://nhscripts.vercel.app/bypass.json"
+local BLACKLIST_URL = "https://nhscripts.vercel.app/api/blacklist"
+
+-- UI: Screen
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+screenGui.Name = "NHKeyUI"
+
+local keyFrame = Instance.new("Frame", screenGui)
+keyFrame.Size = UDim2.new(0, 300, 0, 170)
+keyFrame.Position = UDim2.new(0.5, -150, 0.5, -85)
+keyFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+keyFrame.BorderSizePixel = 0
+
+local keyTitle = Instance.new("TextLabel", keyFrame)
+keyTitle.Size = UDim2.new(1, 0, 0, 40)
+keyTitle.Text = "🔑 Bitte Key eingeben"
+keyTitle.TextColor3 = Color3.new(1,1,1)
+keyTitle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+keyTitle.BorderSizePixel = 0
+keyTitle.Font = Enum.Font.SourceSansBold
+keyTitle.TextSize = 20
+
+local keyBox = Instance.new("TextBox", keyFrame)
+keyBox.PlaceholderText = "Key hier eingeben"
+keyBox.Size = UDim2.new(0.9, 0, 0, 40)
+keyBox.Position = UDim2.new(0.05, 0, 0, 50)
+keyBox.Text = ""
+keyBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+keyBox.TextColor3 = Color3.new(1,1,1)
+keyBox.ClearTextOnFocus = false
+keyBox.Font = Enum.Font.SourceSans
+keyBox.TextSize = 18
+
+local statusLabel = Instance.new("TextLabel", keyFrame)
+statusLabel.Size = UDim2.new(0.9, 0, 0, 20)
+statusLabel.Position = UDim2.new(0.05, 0, 0, 95)
+statusLabel.BackgroundTransparency = 1
+statusLabel.TextColor3 = Color3.new(1, 0.3, 0.3)
+statusLabel.Font = Enum.Font.SourceSansItalic
+statusLabel.TextSize = 16
+statusLabel.Text = ""
+
+local keyButton = Instance.new("TextButton", keyFrame)
+keyButton.Text = "✅ Bestätigen"
+keyButton.Size = UDim2.new(0.9, 0, 0, 40)
+keyButton.Position = UDim2.new(0.05, 0, 0, 120)
+keyButton.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+keyButton.TextColor3 = Color3.new(1,1,1)
+keyButton.Font = Enum.Font.SourceSansBold
+keyButton.TextSize = 18
+keyButton.BorderSizePixel = 0
+
+-- Flags
+local isBypass = false
+local isBlacklisted = false
+
+-- Blacklist Check
+pcall(function()
+	local blData = HttpService:JSONDecode(game:HttpGet(BLACKLIST_URL))
+	if typeof(blData) == "table" then
+		for _, entry in ipairs(blData) do
+			if tonumber(entry.userId) == player.UserId then
+				isBlacklisted = true
+				statusLabel.Text = "🚫 Blacklisted: " .. (entry.reason or "Kein Grund angegeben")
+				keyBox.Visible = false
+				keyButton.Visible = false
+				break
+			end
+		end
+	end
+end)
+
+-- Bypass Check (nur wenn nicht blacklisted)
+if not isBlacklisted then
+	pcall(function()
+		local bypassData = HttpService:JSONDecode(game:HttpGet(BYPASS_URL))
+		if typeof(bypassData) == "table" then
+			for _, id in ipairs(bypassData) do
+				if tonumber(id) == player.UserId then
+					isBypass = true
+					keyTitle.Text = "✅ Whitelisted!"
+					keyBox.PlaceholderText = "Kein Key nötig"
+					keyBox.TextEditable = false
+					break
+				end
+			end
+		end
+	end)
+end
+
+-- Button Funktion
+keyButton.MouseButton1Click:Connect(function()
+	if isBlacklisted then return end -- Kein Zugang wenn blacklisted
+
+	if isBypass then
+		keyFrame.Visible = false
+		game:GetService("VoiceChatService"):joinVoice()
+		return
+	end
+
+	local success, result = pcall(function()
+		local data = HttpService:JSONDecode(game:HttpGet(KEY_URL))
+		return data and data.key:lower()
+	end)
+	local inputKey = keyBox.Text:lower():gsub("%s+", "")
+	if success and inputKey == result then
+		keyFrame.Visible = false
+		game:GetService("VoiceChatService"):joinVoice()
+	else
+		keyBox.Text = "❌ Falscher Key"
+	end
+end)
