@@ -1,1 +1,1 @@
-Im Neuen Script 
+game:GetService("VoiceChatService"):joinVoice()
