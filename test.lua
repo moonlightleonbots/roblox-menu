@@ -83,7 +83,7 @@ FlyTab:CreateToggle({
 })
 FlyTab:CreateSlider({
     Name = "Fly Speed",
-    Range = {1, 10},
+    Range = {1, 100},
     Increment = 1,
     CurrentValue = 1,
     Suffix = "x",
