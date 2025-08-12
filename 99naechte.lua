@@ -101,7 +101,7 @@ keyButton.MouseButton1Click:Connect(function()
 
 	if isBypass then
 		keyFrame.Visible = false
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/moonlightleonbots/roblox-menu/refs/heads/main/Protected_6515885223023409.lua"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/moonlightleonbots/roblox-menu/refs/heads/main/script.lua"))()
 		return
 	end
 
@@ -112,7 +112,7 @@ keyButton.MouseButton1Click:Connect(function()
 	local inputKey = keyBox.Text:lower():gsub("%s+", "")
 	if success and inputKey == result then
 		keyFrame.Visible = false
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/moonlightleonbots/roblox-menu/refs/heads/main/Protected_6515885223023409.lua"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/moonlightleonbots/roblox-menu/refs/heads/main/script.lua"))()
 	else
 		keyBox.Text = "❌ Falscher Key"
 	end
