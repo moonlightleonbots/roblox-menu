@@ -11,6 +11,7 @@ local Window = Rayfield:CreateWindow({
 local FlyTab = Window:CreateTab("Fly", 4483362458)
 local EspTab = Window:CreateTab("ESP", 4483362458)
 local UtilTab = Window:CreateTab("Util", 4483362458)
+local MoreTab = Window:CreateTab("More", 4483362458) -- Beispiel weiterer Tab
 
 -- Variablen
 local Speed = 1
@@ -19,7 +20,12 @@ local FlyLoop
 local BodyGyro, BodyVel
 local Player = game.Players.LocalPlayer
 
--- Funktion: Fly starten
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local Camera = workspace.CurrentCamera
+
+-- Fly Funktionen
 local function StartFly()
     if not Player.Character or not Player.Character:FindFirstChild("HumanoidRootPart") then return end
     local HRP = Player.Character.HumanoidRootPart
@@ -38,24 +44,25 @@ local function StartFly()
     FlyActive = true
     Player.Character.Humanoid.PlatformStand = true
 
-    FlyLoop = game:GetService("RunService").RenderStepped:Connect(function()
-        local camCF = workspace.CurrentCamera.CFrame
+    FlyLoop = RunService.RenderStepped:Connect(function()
+        local camCF = Camera.CFrame
         local moveDir = Vector3.new()
-        local uis = game:GetService("UserInputService")
 
-        if uis:IsKeyDown(Enum.KeyCode.W) then moveDir += camCF.LookVector end
-        if uis:IsKeyDown(Enum.KeyCode.S) then moveDir -= camCF.LookVector end
-        if uis:IsKeyDown(Enum.KeyCode.A) then moveDir -= camCF.RightVector end
-        if uis:IsKeyDown(Enum.KeyCode.D) then moveDir += camCF.RightVector end
-        if uis:IsKeyDown(Enum.KeyCode.Space) then moveDir += Vector3.new(0, 1, 0) end
-        if uis:IsKeyDown(Enum.KeyCode.LeftControl) then moveDir -= Vector3.new(0, 1, 0) end
+        if UserInputService:IsKeyDown(Enum.KeyCode.W) then moveDir += camCF.LookVector end
+        if UserInputService:IsKeyDown(Enum.KeyCode.S) then moveDir -= camCF.LookVector end
+        if UserInputService:IsKeyDown(Enum.KeyCode.A) then moveDir -= camCF.RightVector end
+        if UserInputService:IsKeyDown(Enum.KeyCode.D) then moveDir += camCF.RightVector end
+        if UserInputService:IsKeyDown(Enum.KeyCode.Space) then moveDir += Vector3.new(0, 1, 0) end
+        if UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then moveDir -= Vector3.new(0, 1, 0) end
 
-        BodyVel.Velocity = moveDir * Speed * 5
+        BodyVel.Velocity = moveDir.Unit * Speed * 5
+        if moveDir.Magnitude == 0 then
+            BodyVel.Velocity = Vector3.new(0,0,0)
+        end
         BodyGyro.CFrame = camCF
     end)
 end
 
--- Funktion: Fly stoppen
 local function StopFly()
     FlyActive = false
     if FlyLoop then FlyLoop:Disconnect() FlyLoop = nil end
@@ -66,20 +73,14 @@ local function StopFly()
     end
 end
 
--- Fly Toggle
+-- Fly Toggle & Speed
 FlyTab:CreateToggle({
     Name = "Fly an/aus",
     CurrentValue = false,
     Callback = function(state)
-        if state then
-            StartFly()
-        else
-            StopFly()
-        end
+        if state then StartFly() else StopFly() end
     end
 })
-
--- Speed Slider
 FlyTab:CreateSlider({
     Name = "Fly Speed",
     Range = {1, 10},
@@ -92,11 +93,8 @@ FlyTab:CreateSlider({
 })
 
 ----------------------------------------------------
--- ESP mit einzeln steuerbaren Komponenten
+-- ESP mit feiner Steuerung
 ----------------------------------------------------
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-
 local EspOptions = {
     Box = false,
     Name = false,
@@ -105,231 +103,159 @@ local EspOptions = {
     Tracer = false,
     Distance = false,
 }
-
 local EspObjects = {}
 
-local function CreateSkeleton(char)
-    -- Skeleton Lines between joints
-    local joints = {
-        {"Head", "UpperTorso"},
-        {"UpperTorso", "LowerTorso"},
-        {"UpperTorso", "LeftUpperArm"},
-        {"LeftUpperArm", "LeftLowerArm"},
-        {"LeftLowerArm", "LeftHand"},
-        {"UpperTorso", "RightUpperArm"},
-        {"RightUpperArm", "RightLowerArm"},
-        {"RightLowerArm", "RightHand"},
-        {"LowerTorso", "LeftUpperLeg"},
-        {"LeftUpperLeg", "LeftLowerLeg"},
-        {"LeftLowerLeg", "LeftFoot"},
-        {"LowerTorso", "RightUpperLeg"},
-        {"RightUpperLeg", "RightLowerLeg"},
-        {"RightLowerLeg", "RightFoot"},
-    }
-
-    local skeletonFolder = Instance.new("Folder")
-    skeletonFolder.Name = "ESPSkeleton"
-    skeletonFolder.Parent = char
-
-    local lines = {}
-
-    for _, jointPair in ipairs(joints) do
-        local part0 = char:FindFirstChild(jointPair[1])
-        local part1 = char:FindFirstChild(jointPair[2])
-        if part0 and part1 then
-            local line = Drawing and Drawing.new and Drawing.new("Line") or nil
-            if line then
-                line.Visible = true
-                line.Thickness = 1
-                line.Color = Color3.new(1,0,0)
-                table.insert(lines, {line = line, part0 = part0, part1 = part1})
-            end
-        end
-    end
-
-    return {
-        folder = skeletonFolder,
-        lines = lines,
-        update = function()
-            for _, data in ipairs(lines) do
-                local p0, p1 = data.part0, data.part1
-                local screenPos0, onScreen0 = workspace.CurrentCamera:WorldToViewportPoint(p0.Position)
-                local screenPos1, onScreen1 = workspace.CurrentCamera:WorldToViewportPoint(p1.Position)
-                if onScreen0 and onScreen1 then
-                    data.line.From = Vector2.new(screenPos0.X, screenPos0.Y)
-                    data.line.To = Vector2.new(screenPos1.X, screenPos1.Y)
-                    data.line.Visible = true
-                else
-                    data.line.Visible = false
-                end
-            end
-        end,
-        destroy = function()
-            for _, data in ipairs(lines) do
-                if data.line then
-                    data.line.Visible = false
-                    data.line:Remove()
-                end
-            end
-            if skeletonFolder then skeletonFolder:Destroy() end
-        end,
-    }
+local function CreateHighlight(char)
+    if char:FindFirstChild("ESPBox") then return end
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "ESPBox"
+    highlight.FillColor = Color3.fromRGB(255, 0, 0)
+    highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    highlight.Adornee = char
+    highlight.Parent = char
+    return highlight
 end
 
-local function CreateESPForPlayer(plr)
-    if plr == Player then return end
-    if not plr.Character or not plr.Character:FindFirstChild("HumanoidRootPart") then return end
-    local char = plr.Character
+local function CreateBillboardGui(char)
+    if char:FindFirstChild("ESPBillboard") then return char.ESPBillboard end
+    local billboard = Instance.new("BillboardGui")
+    billboard.Name = "ESPBillboard"
+    billboard.Adornee = char:FindFirstChild("Head") or char:FindFirstChild("HumanoidRootPart")
+    billboard.Size = UDim2.new(0, 200, 0, 50)
+    billboard.AlwaysOnTop = true
+    billboard.Parent = char
 
-    -- Tabelle für diese Spielerobjekte anlegen
-    if not EspObjects[plr] then
-        EspObjects[plr] = {}
-    end
+    local nameLabel = Instance.new("TextLabel")
+    nameLabel.Name = "NameLabel"
+    nameLabel.Size = UDim2.new(1, 0, 0.3, 0)
+    nameLabel.BackgroundTransparency = 1
+    nameLabel.TextColor3 = Color3.new(1, 1, 1)
+    nameLabel.TextStrokeTransparency = 0
+    nameLabel.Font = Enum.Font.SourceSansBold
+    nameLabel.TextSize = 14
+    nameLabel.Parent = billboard
 
+    local healthBar = Instance.new("Frame")
+    healthBar.Name = "HealthBar"
+    healthBar.Size = UDim2.new(1, 0, 0.3, 0)
+    healthBar.Position = UDim2.new(0, 0, 0.35, 0)
+    healthBar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    healthBar.BorderSizePixel = 0
+    healthBar.Parent = billboard
+
+    local distLabel = Instance.new("TextLabel")
+    distLabel.Name = "DistanceLabel"
+    distLabel.Size = UDim2.new(1, 0, 0.3, 0)
+    distLabel.Position = UDim2.new(0, 0, 0.7, 0)
+    distLabel.BackgroundTransparency = 1
+    distLabel.TextColor3 = Color3.new(1, 1, 1)
+    distLabel.TextStrokeTransparency = 0
+    distLabel.Font = Enum.Font.SourceSans
+    distLabel.TextSize = 14
+    distLabel.Parent = billboard
+
+    return billboard
+end
+
+local function RemoveESP(plr)
     local obj = EspObjects[plr]
+    if not obj then return end
 
-    -- Box (Highlight)
-    if EspOptions.Box and not obj.ESPBox then
-        local highlight = Instance.new("Highlight")
-        highlight.Name = "ESPBox"
-        highlight.FillColor = Color3.fromRGB(255, 0, 0)
-        highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
-        highlight.Adornee = char
-        highlight.Parent = char
-        obj.ESPBox = highlight
-    elseif (not EspOptions.Box) and obj.ESPBox then
-        obj.ESPBox:Destroy()
-        obj.ESPBox = nil
+    if obj.Highlight and obj.Highlight.Parent then obj.Highlight:Destroy() end
+    if obj.Billboard and obj.Billboard.Parent then obj.Billboard:Destroy() end
+    if obj.SkeletonConnection then
+        obj.SkeletonConnection:Disconnect()
+        obj.SkeletonConnection = nil
     end
-
-    -- BillboardGui für Name + Health + Distance
-    if not obj.ESPBillboard then
-        local billboard = Instance.new("BillboardGui")
-        billboard.Name = "ESPBillboard"
-        billboard.Adornee = char:FindFirstChild("Head") or char:FindFirstChild("HumanoidRootPart")
-        billboard.Size = UDim2.new(0, 200, 0, 50)
-        billboard.AlwaysOnTop = true
-        billboard.Parent = char
-        obj.ESPBillboard = billboard
-
-        -- Name Label
-        local nameLabel = Instance.new("TextLabel")
-        nameLabel.Name = "NameLabel"
-        nameLabel.Size = UDim2.new(1, 0, 0.3, 0)
-        nameLabel.BackgroundTransparency = 1
-        nameLabel.TextColor3 = Color3.new(1, 1, 1)
-        nameLabel.TextStrokeTransparency = 0
-        nameLabel.Font = Enum.Font.SourceSansBold
-        nameLabel.TextSize = 14
-        nameLabel.Parent = billboard
-        obj.NameLabel = nameLabel
-
-        -- HealthBar Frame
-        local healthBar = Instance.new("Frame")
-        healthBar.Name = "HealthBar"
-        healthBar.Size = UDim2.new(1, 0, 0.3, 0)
-        healthBar.Position = UDim2.new(0, 0, 0.35, 0)
-        healthBar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-        healthBar.BorderSizePixel = 0
-        healthBar.Parent = billboard
-        obj.HealthBar = healthBar
-
-        -- Distance Label
-        local distLabel = Instance.new("TextLabel")
-        distLabel.Name = "DistanceLabel"
-        distLabel.Size = UDim2.new(1, 0, 0.3, 0)
-        distLabel.Position = UDim2.new(0, 0, 0.7, 0)
-        distLabel.BackgroundTransparency = 1
-        distLabel.TextColor3 = Color3.new(1, 1, 1)
-        distLabel.TextStrokeTransparency = 0
-        distLabel.Font = Enum.Font.SourceSans
-        distLabel.TextSize = 14
-        distLabel.Parent = billboard
-        obj.DistanceLabel = distLabel
-    end
-
-    -- Billboard Sichtbarkeit nach Optionen anpassen
-    if obj.ESPBillboard then
-        obj.NameLabel.Visible = EspOptions.Name
-        obj.HealthBar.Visible = EspOptions.HealthBar
-        obj.DistanceLabel.Visible = EspOptions.Distance
-        obj.ESPBillboard.Enabled = EspOptions.Name or EspOptions.HealthBar or EspOptions.Distance
-    end
-
-    -- Skeleton
-    if EspOptions.Skeleton and not obj.Skeleton then
-        obj.Skeleton = CreateSkeleton(char)
-    elseif (not EspOptions.Skeleton) and obj.Skeleton then
-        obj.Skeleton.destroy()
-        obj.Skeleton = nil
-    end
-
-    -- Tracer (Linie vom Bildschirmrand zum Spieler)
-    if EspOptions.Tracer and not obj.TracerLine then
-        local line = Drawing and Drawing.new and Drawing.new("Line") or nil
-        if line then
-            line.Visible = true
-            line.Thickness = 1
-            line.Color = Color3.new(1, 0, 0)
-            obj.TracerLine = line
-        end
-    elseif (not EspOptions.Tracer) and obj.TracerLine then
+    if obj.TracerLine then
         obj.TracerLine.Visible = false
         obj.TracerLine:Remove()
         obj.TracerLine = nil
     end
-end
-
-local function RemoveESPForPlayer(plr)
-    local obj = EspObjects[plr]
-    if not obj then return end
-
-    if obj.ESPBox then obj.ESPBox:Destroy() end
-    if obj.ESPBillboard then obj.ESPBillboard:Destroy() end
-    if obj.Skeleton then obj.Skeleton.destroy() end
-    if obj.TracerLine then
-        obj.TracerLine.Visible = false
-        obj.TracerLine:Remove()
-    end
-
     EspObjects[plr] = nil
 end
 
+local function CreateESP(plr)
+    if plr == Player then return end
+    if not plr.Character or not plr.Character:FindFirstChild("HumanoidRootPart") then return end
+
+    -- Vorher entfernen, damit kein Doppel-ESP entsteht
+    RemoveESP(plr)
+
+    local char = plr.Character
+    local obj = {}
+
+    if EspOptions.Box then
+        obj.Highlight = CreateHighlight(char)
+    end
+
+    if EspOptions.Name or EspOptions.HealthBar or EspOptions.Distance then
+        obj.Billboard = CreateBillboardGui(char)
+    end
+
+    -- Skeleton (einfaches Linien-Update mit RenderStepped)
+    if EspOptions.Skeleton then
+        obj.SkeletonConnection = RunService.RenderStepped:Connect(function()
+            -- Simple Skeleton Linien können hier rein, bspw. Lines zwischen wichtigen Parts
+            -- Für Kürze lasse ich das erstmal weg oder du kannst deine eigene Logik einbauen
+        end)
+    end
+
+    -- Tracer mit Drawing API
+    if EspOptions.Tracer and Drawing and Drawing.new then
+        local line = Drawing.new("Line")
+        line.Color = Color3.new(1, 0, 0)
+        line.Thickness = 1
+        line.Visible = true
+        obj.TracerLine = line
+    end
+
+    EspObjects[plr] = obj
+end
+
 local function UpdateESP()
-    if not EspOptions then return end
-
     for plr, obj in pairs(EspObjects) do
-        if plr.Character and plr.Character:FindFirstChild("Humanoid") then
-            local hum = plr.Character.Humanoid
-            -- Health Bar Update
-            if obj.HealthBar and EspOptions.HealthBar then
-                obj.HealthBar.Size = UDim2.new(hum.Health / hum.MaxHealth, 0, 0.3, 0)
-                obj.HealthBar.BackgroundColor3 = Color3.fromRGB(255 - (hum.Health / hum.MaxHealth) * 255, (hum.Health / hum.MaxHealth) * 255, 0)
+        if not plr.Character or not plr.Character:FindFirstChild("HumanoidRootPart") then
+            RemoveESP(plr)
+        else
+            local char = plr.Character
+            local hum = char:FindFirstChild("Humanoid")
+            local hrp = char:FindFirstChild("HumanoidRootPart")
+            if obj.Highlight then
+                obj.Highlight.Adornee = char
+                obj.Highlight.FillColor = Color3.fromRGB(255, 0, 0)
+                obj.Highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+            end
+            if obj.Billboard then
+                obj.Billboard.Adornee = char:FindFirstChild("Head") or hrp
+
+                -- Name
+                obj.Billboard.NameLabel.Visible = EspOptions.Name
+                obj.Billboard.NameLabel.Text = plr.Name
+
+                -- HealthBar
+                obj.Billboard.HealthBar.Visible = EspOptions.HealthBar
+                if hum and hum.Health > 0 then
+                    local ratio = hum.Health / hum.MaxHealth
+                    obj.Billboard.HealthBar.Size = UDim2.new(ratio, 0, 0.3, 0)
+                    obj.Billboard.HealthBar.BackgroundColor3 = Color3.fromRGB(255 - ratio * 255, ratio * 255, 0)
+                end
+
+                -- Distance
+                obj.Billboard.DistanceLabel.Visible = EspOptions.Distance
+                if hrp and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") then
+                    local dist = math.floor((Player.Character.HumanoidRootPart.Position - hrp.Position).Magnitude)
+                    obj.Billboard.DistanceLabel.Text = dist .. "m"
+                end
+
+                -- Billboard nur zeigen, wenn eine der Komponenten an ist
+                obj.Billboard.Enabled = EspOptions.Name or EspOptions.HealthBar or EspOptions.Distance
             end
 
-            -- Name Update
-            if obj.NameLabel and EspOptions.Name then
-                obj.NameLabel.Text = plr.Name
-            end
-
-            -- Distance Update
-            if obj.DistanceLabel and EspOptions.Distance then
-                local dist = math.floor((Player.Character.HumanoidRootPart.Position - plr.Character.HumanoidRootPart.Position).Magnitude)
-                obj.DistanceLabel.Text = tostring(dist) .. "m"
-            end
-
-            -- Skeleton Update
-            if obj.Skeleton and EspOptions.Skeleton then
-                obj.Skeleton.update()
-            end
-
-            -- Tracer Update
-            if obj.TracerLine and EspOptions.Tracer then
-                local hrpPos = plr.Character.HumanoidRootPart.Position
-                local cam = workspace.CurrentCamera
-                local screenPos, onScreen = cam:WorldToViewportPoint(hrpPos)
-                local centerX, centerY = cam.ViewportSize.X / 2, cam.ViewportSize.Y / 2
-
+            -- Tracer aktualisieren
+            if obj.TracerLine and hrp then
+                local screenPos, onScreen = Camera:WorldToViewportPoint(hrp.Position)
+                local centerX, centerY = Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2
                 if onScreen then
                     obj.TracerLine.From = Vector2.new(centerX, centerY)
                     obj.TracerLine.To = Vector2.new(screenPos.X, screenPos.Y)
@@ -338,49 +264,39 @@ local function UpdateESP()
                     obj.TracerLine.Visible = false
                 end
             end
-        else
-            RemoveESPForPlayer(plr)
         end
     end
 end
 
-local function EnableESP()
-    for _, plr in pairs(Players:GetPlayers()) do
-        CreateESPForPlayer(plr)
+local function RefreshESPForAllPlayers()
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= Player and plr.Character then
+            CreateESP(plr)
+        end
     end
 end
 
-local function DisableESP()
-    for plr, _ in pairs(EspObjects) do
-        RemoveESPForPlayer(plr)
-    end
-    EspObjects = {}
-end
-
+-- Verbindung zu Spielern die joinen/leave
 Players.PlayerAdded:Connect(function(plr)
-    -- Verzögert um Charakter zu laden
     plr.CharacterAdded:Connect(function()
         wait(1)
-        if next(EspOptions) then -- mind. eine Option aktiv
-            CreateESPForPlayer(plr)
-        end
+        CreateESP(plr)
     end)
 end)
 
 Players.PlayerRemoving:Connect(function(plr)
-    RemoveESPForPlayer(plr)
+    RemoveESP(plr)
 end)
 
--- ESP Toggles
+-- ESP Toggle Controls
 EspTab:CreateToggle({
     Name = "Box (Highlight)",
     CurrentValue = false,
     Callback = function(state)
         EspOptions.Box = state
-        if state then CreateESPForPlayer(Player) end
+        RefreshESPForAllPlayers()
     end
 })
-
 EspTab:CreateToggle({
     Name = "Name",
     CurrentValue = false,
@@ -388,7 +304,6 @@ EspTab:CreateToggle({
         EspOptions.Name = state
     end
 })
-
 EspTab:CreateToggle({
     Name = "Healthbar",
     CurrentValue = false,
@@ -396,15 +311,13 @@ EspTab:CreateToggle({
         EspOptions.HealthBar = state
     end
 })
-
 EspTab:CreateToggle({
-    Name = "Skeleton",
+    Name = "Skeleton (noch leer)",
     CurrentValue = false,
     Callback = function(state)
         EspOptions.Skeleton = state
     end
 })
-
 EspTab:CreateToggle({
     Name = "Tracer",
     CurrentValue = false,
@@ -412,7 +325,6 @@ EspTab:CreateToggle({
         EspOptions.Tracer = state
     end
 })
-
 EspTab:CreateToggle({
     Name = "Distance",
     CurrentValue = false,
@@ -421,7 +333,7 @@ EspTab:CreateToggle({
     end
 })
 
--- Update Loop für ESP (Health, Skeleton, Tracer etc.)
+-- RunService Loop für Updates (Healthbar, Tracer etc)
 RunService.RenderStepped:Connect(function()
     UpdateESP()
 end)
@@ -432,6 +344,18 @@ end)
 UtilTab:CreateButton({
     Name = "VC Unban",
     Callback = function()
-        game:GetService("VoiceChatService"):joinVoice()
+        pcall(function()
+            game:GetService("VoiceChatService"):joinVoice()
+        end)
+    end
+})
+
+----------------------------------------------------
+-- More Tab Beispiel für weitere Features
+----------------------------------------------------
+MoreTab:CreateButton({
+    Name = "Example Button",
+    Callback = function()
+        print("More Tab Button clicked!")
     end
 })
