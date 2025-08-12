@@ -11,7 +11,7 @@ local Window = Rayfield:CreateWindow({
 local FlyTab = Window:CreateTab("Fly", 4483362458)
 local EspTab = Window:CreateTab("ESP", 4483362458)
 local UtilTab = Window:CreateTab("Util", 4483362458)
-local MoreTab = Window:CreateTab("More", 4483362458) -- Beispiel weiterer Tab
+local MoreTab = Window:CreateTab("More", 4483362458)
 
 -- Variablen
 local Speed = 1
@@ -55,9 +55,10 @@ local function StartFly()
         if UserInputService:IsKeyDown(Enum.KeyCode.Space) then moveDir += Vector3.new(0, 1, 0) end
         if UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then moveDir -= Vector3.new(0, 1, 0) end
 
-        BodyVel.Velocity = moveDir.Unit * Speed * 5
-        if moveDir.Magnitude == 0 then
-            BodyVel.Velocity = Vector3.new(0,0,0)
+        if moveDir.Magnitude > 0 then
+            BodyVel.Velocity = moveDir.Unit * Speed * 5
+        else
+            BodyVel.Velocity = Vector3.new(0, 0, 0)
         end
         BodyGyro.CFrame = camCF
     end)
@@ -73,7 +74,6 @@ local function StopFly()
     end
 end
 
--- Fly Toggle & Speed
 FlyTab:CreateToggle({
     Name = "Fly an/aus",
     CurrentValue = false,
@@ -179,7 +179,6 @@ local function CreateESP(plr)
     if plr == Player then return end
     if not plr.Character or not plr.Character:FindFirstChild("HumanoidRootPart") then return end
 
-    -- Vorher entfernen, damit kein Doppel-ESP entsteht
     RemoveESP(plr)
 
     local char = plr.Character
@@ -193,15 +192,12 @@ local function CreateESP(plr)
         obj.Billboard = CreateBillboardGui(char)
     end
 
-    -- Skeleton (einfaches Linien-Update mit RenderStepped)
     if EspOptions.Skeleton then
         obj.SkeletonConnection = RunService.RenderStepped:Connect(function()
-            -- Simple Skeleton Linien können hier rein, bspw. Lines zwischen wichtigen Parts
-            -- Für Kürze lasse ich das erstmal weg oder du kannst deine eigene Logik einbauen
+            -- Hier kannst du Skeleton Linien zeichnen (z.B. mit Drawing API)
         end)
     end
 
-    -- Tracer mit Drawing API
     if EspOptions.Tracer and Drawing and Drawing.new then
         local line = Drawing.new("Line")
         line.Color = Color3.new(1, 0, 0)
@@ -229,11 +225,9 @@ local function UpdateESP()
             if obj.Billboard then
                 obj.Billboard.Adornee = char:FindFirstChild("Head") or hrp
 
-                -- Name
                 obj.Billboard.NameLabel.Visible = EspOptions.Name
                 obj.Billboard.NameLabel.Text = plr.Name
 
-                -- HealthBar
                 obj.Billboard.HealthBar.Visible = EspOptions.HealthBar
                 if hum and hum.Health > 0 then
                     local ratio = hum.Health / hum.MaxHealth
@@ -241,18 +235,15 @@ local function UpdateESP()
                     obj.Billboard.HealthBar.BackgroundColor3 = Color3.fromRGB(255 - ratio * 255, ratio * 255, 0)
                 end
 
-                -- Distance
                 obj.Billboard.DistanceLabel.Visible = EspOptions.Distance
                 if hrp and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") then
                     local dist = math.floor((Player.Character.HumanoidRootPart.Position - hrp.Position).Magnitude)
                     obj.Billboard.DistanceLabel.Text = dist .. "m"
                 end
 
-                -- Billboard nur zeigen, wenn eine der Komponenten an ist
                 obj.Billboard.Enabled = EspOptions.Name or EspOptions.HealthBar or EspOptions.Distance
             end
 
-            -- Tracer aktualisieren
             if obj.TracerLine and hrp then
                 local screenPos, onScreen = Camera:WorldToViewportPoint(hrp.Position)
                 local centerX, centerY = Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2
@@ -276,7 +267,6 @@ local function RefreshESPForAllPlayers()
     end
 end
 
--- Verbindung zu Spielern die joinen/leave
 Players.PlayerAdded:Connect(function(plr)
     plr.CharacterAdded:Connect(function()
         wait(1)
@@ -288,7 +278,6 @@ Players.PlayerRemoving:Connect(function(plr)
     RemoveESP(plr)
 end)
 
--- ESP Toggle Controls
 EspTab:CreateToggle({
     Name = "Box (Highlight)",
     CurrentValue = false,
@@ -333,13 +322,12 @@ EspTab:CreateToggle({
     end
 })
 
--- RunService Loop für Updates (Healthbar, Tracer etc)
 RunService.RenderStepped:Connect(function()
     UpdateESP()
 end)
 
 ----------------------------------------------------
--- Util Tab: VC Unban
+-- Util Tab: VC Unban, Invisible, Nametag, Team wechseln, NoClip
 ----------------------------------------------------
 UtilTab:CreateButton({
     Name = "VC Unban",
@@ -350,8 +338,121 @@ UtilTab:CreateButton({
     end
 })
 
+local InvisibleActive = false
+UtilTab:CreateToggle({
+    Name = "Invisible an/aus",
+    CurrentValue = false,
+    Callback = function(state)
+        InvisibleActive = state
+        local char = Player.Character
+        if char then
+            for _, part in pairs(char:GetChildren()) do
+                if part:IsA("BasePart") or part:IsA("Decal") or part:IsA("MeshPart") then
+                    part.Transparency = state and 1 or 0
+                elseif part:IsA("ParticleEmitter") or part:IsA("BillboardGui") then
+                    part.Enabled = not state
+                end
+            end
+        end
+    end
+})
+
+UtilTab:CreateInput({
+    Name = "Nametag ändern",
+    PlaceholderText = "Neuen Namen hier eingeben",
+    RemoveTextAfterFocusLost = false,
+    ClearTextOnFocus = false,
+    Callback = function(text)
+        if text ~= "" then
+            local char = Player.Character
+            if char and char:FindFirstChild("Head") then
+                local billboard = char:FindFirstChild("NametagBillboard")
+                if not billboard then
+                    billboard = Instance.new("BillboardGui")
+                    billboard.Name = "NametagBillboard"
+                    billboard.Adornee = char.Head
+                    billboard.Size = UDim2.new(0, 200, 0, 50)
+                    billboard.AlwaysOnTop = true
+                    billboard.Parent = char
+                    local label = Instance.new("TextLabel")
+                    label.Name = "NameLabel"
+                    label.BackgroundTransparency = 1
+                    label.TextColor3 = Color3.new(1,1,1)
+                    label.TextStrokeTransparency = 0
+                    label.Font = Enum.Font.SourceSansBold
+                    label.TextSize = 18
+                    label.Size = UDim2.new(1,0,1,0)
+                    label.Parent = billboard
+                end
+                billboard.NameLabel.Text = text
+            end
+        end
+    end
+})
+
+UtilTab:CreateButton({
+    Name = "Team wechseln",
+    Callback = function()
+        local Teams = game:GetService("Teams")
+        local options = {}
+        for _, team in pairs(Teams:GetChildren()) do
+            if team:IsA("Team") then
+                table.insert(options, team.Name)
+            end
+        end
+
+        local modal = Rayfield:CreateWindow({Name = "Team wechseln"})
+        local teamTab = modal:CreateTab("Teams")
+
+        for _, teamName in ipairs(options) do
+            teamTab:CreateButton({
+                Name = teamName,
+                Callback = function()
+                    local team = Teams:FindFirstChild(teamName)
+                    if team then
+                        Player.Team = team
+                        if Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") then
+                            Player.Character.HumanoidRootPart.CFrame = CFrame.new(0,10,0)
+                        end
+                        modal:Destroy()
+                    end
+                end
+            })
+        end
+    end
+})
+
+local NoClipActive = false
+UtilTab:CreateToggle({
+    Name = "NoClip an/aus",
+    CurrentValue = false,
+    Callback = function(state)
+        NoClipActive = state
+        local char = Player.Character
+        if not char then return end
+        local hrp = char:FindFirstChild("HumanoidRootPart")
+        if not hrp then return end
+
+        if state then
+            hrp.CanCollide = false
+            for _, part in pairs(char:GetChildren()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = false
+                end
+            end
+        else
+            hrp.CanCollide = true
+            for _, part in pairs(char:GetChildren()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = true
+                end
+            end
+        end
+    end
+})
+
 ----------------------------------------------------
--- More Tab Beispiel für weitere Features
+-- More Tab (Platzhalter)
 ----------------------------------------------------
 MoreTab:CreateButton({
     Name = "Example Button",
